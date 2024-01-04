@@ -2,9 +2,13 @@ package com.driver.Service;
 
 import com.driver.Repository.AirportRepository;
 import com.driver.model.Airport;
+import com.driver.model.City;
+import com.driver.model.Flight;
+import com.driver.model.Passenger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 
 @Service
@@ -14,6 +18,9 @@ public class AirPortService {
 
     public void addAirport(Airport airport){
         airportRepository.addAirport(airport);
+    }
+    public void addPassenger(Passenger passenger){
+        airportRepository.addPassenger(passenger);
     }
 
     public String getLargestAirportName(){
@@ -54,4 +61,42 @@ public class AirPortService {
         }
         return false;
     }
+
+
+    public void addFlight(Flight flight){
+        airportRepository.addFlight(flight);
+    }
+
+    public String bookATicket(Integer flightId,Integer passengerId){
+        return airportRepository.bookATicket(flightId,passengerId);
+    }
+
+    public String cancelATicket(int flightId,int passengerId){
+        return airportRepository.cancelATicket(flightId,passengerId);
+    }
+
+    public int countOfBookingsDoneByPassengerAllCombined(Integer passengerId){
+        return airportRepository.countOfBookingsDoneByPassengerAllCombined(passengerId);
+    }
+
+    public int getRevenueOfAFlight(Integer flightId){
+        return airportRepository.getRevenueOfAFlight(flightId);
+    }
+
+    public String getAirportNameFromFlightId(Integer flightId){
+        return airportRepository.getAirportNameFromFlightId(flightId);
+    }
+
+    public int calculateFlightFare(Integer flightId){
+        return airportRepository.calculateFlightFare(flightId);
+    }
+
+    public int getNumberOfPeopleOn(Date date , String airPortName){
+        return airportRepository.getNumberOfPeopleOn(date,airPortName);
+    }
+
+    public double getShortestDurationOfPossibleBetweenTwoCities(City from , City to){
+        return airportRepository.getShortestDurationOfPossibleBetweenTwoCities(from,to);
+    }
+
 }
